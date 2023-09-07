@@ -25,6 +25,7 @@ en:
       chat_users_count: "Chat Users"
 
     chat:
+      deleted_chat_username: deleted
       dates:
         time_tiny: "h:mm"
       all_loaded: "Showing all messages"
@@ -636,6 +637,9 @@ en:
       types:
         chat_reviewable_message:
           title: "Flagged Chat Message"
+        reviewable_chat_message:
+          title: "Flagged chat message"
+          noun: "chat message"
     keyboard_shortcuts_help:
       chat:
         title: "Chat"

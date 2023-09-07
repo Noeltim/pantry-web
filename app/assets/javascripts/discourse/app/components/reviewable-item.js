@@ -58,6 +58,11 @@ export default Component.extend({
     return classes;
   },
 
+  @discourseComputed("reviewable.created_from_flag", "reviewable.status")
+  displayContextQuestion(createdFromFlag, status) {
+    return createdFromFlag && status === 0;
+  },
+
   @discourseComputed(
     "reviewable.topic",
     "reviewable.topic_id",
@@ -149,7 +154,7 @@ export default Component.extend({
       });
 
       return ajax(
-        `/review/${reviewable.id}/perform/${performableAction.id}?version=${version}`,
+        `/review/${reviewable.id}/perform/${performableAction.server_action}?version=${version}`,
         {
           type: "PUT",
           data,
@@ -281,7 +286,8 @@ export default Component.extend({
       const requireRejectReason = performableAction.get(
         "require_reject_reason"
       );
-      const actionModalClass = actionModalClassMap[performableAction.id];
+      const actionModalClass =
+        actionModalClassMap[performableAction.server_action];
 
       if (message) {
         this.dialog.confirm({
